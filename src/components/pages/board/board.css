@@ -1,0 +1,123 @@
+/*
+ *** styles to let main panel in  baore page get the remaining height of the page
+*/
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.all-wrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.trello-board-main-wrapper {
+  flex-grow: 1;
+}
+
+/* 
+  bottom of this comes the css for making the lists scroll if the list is longer than the page
+*/
+
+.trello-board-main {
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+  margin-right: .5rem;
+  margin-left: .5rem;
+  overflow-x: auto;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.trello-board-list-wrapper {
+  width: 265px !important;
+  margin-bottom: 10px;
+  /* height: 100%; */
+}
+
+.trello-board-list {
+  margin-bottom: 10px;
+  /* position: relative; */
+  /* min-height: 100%; */
+  /* max-height: 100%; */
+  /* display: grid; */
+  /* grid-template-columns: 1fr; */
+  /* grid-template-rows: 1fr, 1fr, 1fr; */
+}
+
+.trello-board-list-header {
+  min-height: 20px;
+}
+
+/* .trello-board-list-items { */
+  /* display: grid; */
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
+  /* position: absolute; */
+  /* top: 20px; */
+  /* bottom: 20px; */
+  /* right: 0; */
+  /* left: 0; */
+  /* display: grid; */
+  /* grid-template-columns: 1fr; */
+  /* grid-template-rows: repeat(20, 1fr); */
+/* } */
+
+/* .trello-board-list-item { */
+  /* margin-top: 0 !important; */
+/* } */
+
+.trello-board-list-footer {
+  height: initial;
+}
+
+/* styles for board menu */
+
+.board-menu {
+  position: absolute;
+  right: 0;
+  background: #ccc;
+  padding: 1.5rem;
+  top: 0;
+  bottom: 0;
+  width: 32%;
+  min-width: 320px;
+  max-width: 400px;
+  animation: boardMenuAnim 0.3s ease-in;
+}
+
+.board-menu-list {
+  margin-top: 1rem;
+}
+
+.board-menu-item {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #aaa;
+  border-radius: 0.25rem;
+  margin-bottom: .3rem;
+  cursor: pointer;
+}
+
+.board-menu-item:hover {
+  background: #aaa
+}
+
+@keyframes boardMenuAnim {
+  from {
+    margin-right: -50px;
+  }
+  to {
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "trello-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "a colne for trello ( connected to trello-server )",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "gh-pages": "^2.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "uniqid": "^5.2.0"
+  },
+  "homepage": "http://hamid814.github.io/trello-client",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "git add . && git commit -m \"dev\" && npm run build && gh-pages -d build",
+    "publish": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:5000"
+}
