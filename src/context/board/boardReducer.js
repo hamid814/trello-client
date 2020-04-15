@@ -331,7 +331,7 @@ export default (state, action) => {
       return {
         ...state,
         labels: state.labels.map((label) => {
-          if (label.id === action.payload.id) {
+          if (label._id === action.payload._id) {
             label.name = action.payload.name;
             label.color = action.payload.color;
             label.colorName = action.payload.colorName;
@@ -352,7 +352,7 @@ export default (state, action) => {
           });
           return b;
         }),
-        labels: state.labels.filter((l) => l.id !== action.payload),
+        labels: state.labels.filter((l) => l._id !== action.payload),
       };
     default:
       return state;

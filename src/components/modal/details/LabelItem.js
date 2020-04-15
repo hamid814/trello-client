@@ -5,14 +5,14 @@ import BoardContext from '../../../context/board/boardContext';
 const Labelitem = ({ label, onClick }) => {
   const { labels } = useContext(BoardContext);
 
-  const thisLabel = labels.filter(l => l.id === label)[0];
+  const thisLabel = labels.filter((l) => l._id === label)[0];
 
   return (
     <div
       onClick={onClick}
-      className={`d-i-b details-label hover label-color-${thisLabel.colorName}`}>
-    </div>
-  )
-}
+      className={`d-i-b details-label hover label-color-${thisLabel.colorName}`}
+    ></div>
+  );
+};
 
-export default Labelitem
+export default Labelitem;

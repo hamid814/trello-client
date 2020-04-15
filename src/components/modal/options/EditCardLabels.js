@@ -38,7 +38,7 @@ const EditCardLabels = () => {
       };
     }
 
-    updateCard(currentBoardId, currentListId, currentCard.id, newCard);
+    updateCard(currentBoardId, currentListId, currentCard._id, newCard);
     setCurrentCard(newCard);
   };
 
@@ -64,7 +64,7 @@ const EditCardLabels = () => {
       <div className="text-85 mb">Labels</div>
       {labels.map((l) => (
         <EditCardLabelItem
-          key={l.id}
+          key={l._id}
           searchText={text}
           label={l}
           goToEditLabel={goToEditLabel}

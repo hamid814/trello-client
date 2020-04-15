@@ -136,19 +136,19 @@ const BoardState = (props) => {
 
   // Get data from local storage
   const getBoardsData = async () => {
-    const boards = await axios.get('/api/boards');
     const labels = await axios.get('/api/labels');
+    const boards = await axios.get('/api/boards');
 
-    if (boards.data.success) {
-      dispatch({
-        type: SET_BOARDS,
-        payload: boards.data.data,
-      });
-    }
     if (labels.data.success) {
       dispatch({
         type: SET_LABELS,
         payload: labels.data.data,
+      });
+    }
+    if (boards.data.success) {
+      dispatch({
+        type: SET_BOARDS,
+        payload: boards.data.data,
       });
     }
   };
@@ -1539,10 +1539,9 @@ const BoardState = (props) => {
     }
   };
 
-  const addLabel = (name, colorName, id) => {
+  const addLabel = async (name, colorName) => {
     let is = false;
     const newLabel = {
-      id,
       colorName,
       name,
       color: state.colors.filter((c) => c.name === colorName)[0].color,
@@ -1557,30 +1556,73 @@ const BoardState = (props) => {
     });
 
     if (!is) {
-      dispatch({
-        type: ADD_LABEL,
-        payload: newLabel,
-      });
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      try {
+        const res = await axios.post('/api/labels', newLabel, config);
+
+        if (res.data.success) {
+          dispatch({
+            type: ADD_LABEL,
+            payload: res.data.data,
+          });
+
+          return res.data.data;
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
-  const updateLabel = (name, colorName, id) => {
-    dispatch({
-      type: UPDATE_LABEL,
-      payload: {
-        name,
-        colorName,
-        color: state.colors.filter((c) => c.name === colorName)[0].color,
-        id,
+  const updateLabel = async (name, colorName, id) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
       },
-    });
+    };
+
+    const req = {
+      name,
+      colorName,
+    };
+
+    try {
+      const res = await axios.put(`/api/labels/${id}`, req, config);
+
+      if (res.data.success) {
+        dispatch({
+          type: UPDATE_LABEL,
+          payload: {
+            name: res.data.data.name,
+            colorName: res.data.data.colorName,
+            color: state.colors.filter((c) => c.name === colorName)[0].color,
+            _id: res.data.data._id,
+          },
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const deleteLabel = (id) => {
-    dispatch({
-      type: DELETE_LABEL,
-      payload: id,
-    });
+  const deleteLabel = async (id) => {
+    try {
+      const res = await axios.delete(`/api/labels/${id}`);
+
+      if (res.data.success) {
+        dispatch({
+          type: DELETE_LABEL,
+          payload: id,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
