@@ -11,6 +11,7 @@ const AuthState = (props) => {
     isAuthenicated: false,
     error: null,
     loading: true,
+    loadingMessagge: '',
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -22,11 +23,11 @@ const AuthState = (props) => {
     }
 
     try {
-      const user = await axios.get('/api/auth/me');
+      const res = await axios.get('/api/auth/me');
 
       dispatch({
         type: 'user-loaded',
-        payload: user,
+        payload: res.data.data,
       });
     } catch (err) {
       dispatch({
@@ -51,6 +52,8 @@ const AuthState = (props) => {
         type: 'register-success',
         payload: res.data.token,
       });
+
+      loadUser();
     } catch (err) {
       dispatch({
         type: 'register-fail',
@@ -60,7 +63,29 @@ const AuthState = (props) => {
   };
 
   // Login a user
-  const login = () => {};
+  const login = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    try {
+      const res = await axios.post('/api/auth/login', formData, config);
+
+      dispatch({
+        type: 'login-success',
+        payload: res.data.token,
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: 'login-error',
+        payload: err.response.data.message,
+      });
+    }
+  };
 
   // Log out a user
   const logout = () => {};
@@ -70,6 +95,10 @@ const AuthState = (props) => {
       value={{
         user: state.user,
         isAuthenicated: state.isAuthenicated,
+        loading: state.loading,
+        token: state.token,
+        error: state.error,
+        loadingMessagge: state.loadingMessagge,
         register,
         login,
         logout,

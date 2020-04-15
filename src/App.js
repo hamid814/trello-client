@@ -56,9 +56,7 @@ const App = () => {
         <div
           className={`all-wrapper ${keepBoardsList ? 'grid-1-4 gap-none' : ''}`}
         >
-          {/* <div className='all-wrapper'> */}
           <ListOfBoards />
-          {/* </div> */}
           <div className="all-wrapper" onClick={CloseListOfBoards}>
             <Navbar />
             {!currentBoardId ? <Home /> : <Board />}
