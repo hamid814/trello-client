@@ -1,0 +1,85 @@
+.auth-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  .auth-navbar {
+    position: fixed;
+    width: 100vw;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #388d6a;
+    color: #388d6a;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 100;
+
+    span {
+      color: #388d6a;
+      font-weight: 400;
+    }
+  }
+
+  .register {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .login {
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  form {
+    width: 65%;
+
+    .form-control {
+      margin-bottom: 15px;
+
+      label {
+        margin-left: 20px;
+      }
+    }
+
+    input {
+      margin: 0;
+      margin-top: 7px;
+      padding: 10px;
+      border: 1px #bbb solid;
+      border-radius: 5px;
+
+      &:focus {
+        outline: none;
+        border-color: #444;
+      }
+
+      &[type='submit'] {
+        background-color: transparent;
+        width: 80%;
+        margin-left: 10%;
+        margin-top: 25px;
+        color: #388d6a;
+        border: 1px solid #388d6a;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #388d6a;
+          color: #f3f3f3;
+        }
+      }
+    }
+  }
+}

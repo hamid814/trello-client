@@ -20,22 +20,44 @@ const Register = ({ action }) => {
   };
 
   return (
-    <div>
+    <div className="register">
+      <h2>
+        <span>Register</span> as new user
+      </h2>
       <form onSubmit={onSubmit}>
-        <input type="text" name="name" value={data.name} onChange={onChange} />
-        <input
-          type="text"
-          name="email"
-          value={data.email}
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          name="password"
-          value={data.password}
-          onChange={onChange}
-        />
-        <input type="submit" />
+        <div className="form-control">
+          <label>name:</label>
+          <input
+            type="text"
+            placeholder="enter your name"
+            name="name"
+            value={data.name}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-control">
+          <label>email:</label>
+          <input
+            type="text"
+            placeholder="enter your email"
+            name="email"
+            value={data.email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-control">
+          <label>password:</label>
+          <input
+            placeholder="enter your passwrod"
+            type="password"
+            name="password"
+            value={data.password}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-control">
+          <input type="submit" value="register" />
+        </div>
       </form>
     </div>
   );

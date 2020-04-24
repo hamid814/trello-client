@@ -3,23 +3,35 @@ import AuthContext from '../../../context/auth/authContext';
 import Register from './Register';
 import Login from './Login';
 import Loading from './Loading';
+import AuthNavbar from './AuthNavbar';
 
-const Auth = () => {
-  const { loadUser, loading, loadingMessage, register, login } = useContext(
-    AuthContext
-  );
+import './auth.scss';
+
+const Auth = (props) => {
+  const {
+    loadUser,
+    loading,
+    loadingMessage,
+    register,
+    login,
+    isAuthenicated,
+  } = useContext(AuthContext);
 
   useEffect(() => {
+    if (isAuthenicated) {
+      props.history.push('/');
+    }
+
     loadUser();
     // eslint-disable-next-line
-  }, []);
+  }, [isAuthenicated]);
 
   return (
-    <div>
-      auth page
+    <div className="auth-page">
       {loading && <Loading message={loadingMessage} />}
-      <Register action={register} />
+      <AuthNavbar />
       <Login action={login} />
+      <Register action={register} />
     </div>
   );
 };

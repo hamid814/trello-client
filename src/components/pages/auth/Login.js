@@ -19,21 +19,34 @@ const Login = ({ action }) => {
   };
 
   return (
-    <div>
+    <div className="login">
+      <h2>
+        <span>Login</span> with your account
+      </h2>
       <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          name="email"
-          value={data.email}
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          name="password"
-          value={data.password}
-          onChange={onChange}
-        />
-        <input type="submit" />
+        <div className="form-control">
+          <label>email:</label>
+          <input
+            type="text"
+            placeholder="enter your email"
+            name="email"
+            value={data.email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-control">
+          <label>password:</label>
+          <input
+            type="password"
+            placeholder="enter your password"
+            name="password"
+            value={data.password}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-control">
+          <input type="submit" value="login" />
+        </div>
       </form>
     </div>
   );
