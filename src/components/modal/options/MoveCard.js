@@ -96,7 +96,7 @@ const MoveCard = () => {
           >
             {destBoardId &&
               getBoard(destBoardId).lists.map((list, index) => (
-                <option key={list.id} value={list.id}>
+                <option key={list._id} value={list.id}>
                   {list.title}
                   {list.id === currentListId && '(current)'}
                 </option>
