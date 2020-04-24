@@ -9,6 +9,7 @@ import Alerts from './components/alert/Alerts';
 
 import userContext from './context/user/userContext';
 import boardContext from './context/board/boardContext';
+import authContext from './context/auth/authContext';
 
 import './trello-clone.css';
 
@@ -27,7 +28,11 @@ const App = () => {
 
   const { getBoardsData } = useContext(boardContext);
 
+  const { loadUser } = useContext(authContext);
+
   useEffect(() => {
+    loadUser();
+
     getBoardsData();
     getUserdata();
     // eslint-disable-next-line
