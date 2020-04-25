@@ -16,7 +16,7 @@ const DeleteCard = () => {
   const { setAlert } = useContext(AlertContext);
 
   const onClick = () => {
-    deleteCard(currentBoardId, currentListId, currentCard.id);
+    deleteCard(currentBoardId, currentListId, currentCard._id);
     setModal('off');
     setOptionsModal('off');
     setAlert('card deleted', 'dark');

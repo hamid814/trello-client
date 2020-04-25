@@ -287,10 +287,12 @@ export default (state, action) => {
       return {
         ...state,
         boards: state.boards.map((b) => {
-          if (b.id === action.payload.boardId) {
+          if (b._id === action.payload.boardId) {
             b.lists = b.lists.map((l) => {
-              if (l.id === action.payload.listId) {
-                l.items = l.items.filter((i) => i.id !== action.payload.cardId);
+              if (l._id === action.payload.listId) {
+                l.items = l.items.filter(
+                  (i) => i._id !== action.payload.cardId
+                );
               }
               return l;
             });
